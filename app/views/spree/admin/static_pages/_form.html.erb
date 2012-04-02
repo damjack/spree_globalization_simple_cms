@@ -1,0 +1,44 @@
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#tabs_pg").tabs();
+});
+</script>
+<div id="tabs_pg" data-hook="admin_page_form_fields">
+	<% if(Spree::Page::LANG.blank?) %>
+	<%= f.inputs do %>
+		<%= f.input :name, :label => t("simple_cms.page.name") %>
+		<%= f.input :slug, :label => t("simple_cms.page.slug") %>
+		<%= f.input :tag_title, :label => t("simple_cms.page.tag_title") %>
+		<%= f.input :meta_description, :label => t("simple_cms.page.meta_description") %>
+		<%= f.input :meta_keywords, :label => t("simple_cms.page.meta_keywords") %>
+		<%= f.cktext_area :content, :input_html => { :value => @static_page.content }, :label => t("simple_cms.page.content") %>
+	<% end %>
+	<% else %>
+		<ul>
+			<%- Spree::Page::LANG.each do |locale| %>
+			<li><%= link_to "#{locale.to_s.titleize}", "#tab_pg_#{locale.to_s}"%></li>
+			<%- end -%>
+		</ul>
+		<%- Spree::Page::LANG.each do |locale| %>
+		<div id="tab_pg_<%= locale.to_s %>">
+			<%= f.inputs do %>
+				<%= f.input "name_#{locale}".to_sym, :label => t("simple_cms.page.name") %>
+				<%= f.input "slug_#{locale}".to_sym, :label => t("simple_cms.page.slug") %>
+				<%= f.input "tag_title_#{locale}".to_sym, :label => t("simple_cms.page.tag_title") %>
+				<%= f.input "meta_description_#{locale}".to_sym, :label => t("simple_cms.page.meta_description") %>
+				<%= f.input "meta_keywords_#{locale}".to_sym, :label => t("simple_cms.page.meta_keywords") %>
+				<%= f.cktext_area "content_#{locale}".to_sym, :input_html => { :value => Spree::StaticPage.find(@static_page.id).content }, :label => t("simple_cms.page.content") %>
+			<% end %>
+		</div>
+		<% end %>
+	<% end %>
+	<%= f.inputs do %>
+		<%= f.input :position, :label => t("simple_cms.page.position") %>
+		<%= f.input :published_at, :as => :string, :input_html => { :class => 'datepicker'}, :label => t("simple_cms.page.published_at") %>
+		
+		<%= f.input :image_width, :label => t("simple_cms.page.image_width") %>
+		<%= f.input :image_height, :label => t("simple_cms.page.image_height") %>
+		
+		<%= f.input :image, :as => :file, :label => t("simple_cms.page.image.one").capitalize, :hint => f.object.image.blank? ? f.template.content_tag(:span, t("simple_cms.page.no_image")) : f.template.image_tag(f.object.image.url(:thumbnail)) %>
+	<% end %>
+</div>
