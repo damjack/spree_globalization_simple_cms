@@ -4,7 +4,7 @@ $(document).ready(function() {
 });
 </script>
 <div id="tabs_pg" data-hook="admin_page_form_fields">
-	<% if(Spree::Page::LANG.blank?) %>
+	<% if(LANG_CMS.blank?) %>
 	<%= f.inputs do %>
 		<%= f.input :name, :label => t("simple_cms.page.name") %>
 		<%= f.input :slug, :label => t("simple_cms.page.slug") %>
@@ -15,11 +15,11 @@ $(document).ready(function() {
 	<% end %>
 	<% else %>
 		<ul>
-			<%- Spree::Page::LANG.each do |locale| %>
+			<%- LANG_CMS.each do |locale| %>
 			<li><%= link_to "#{locale.to_s.titleize}", "#tab_pg_#{locale.to_s}"%></li>
 			<%- end -%>
 		</ul>
-		<%- Spree::Page::LANG.each do |locale| %>
+		<%- LANG_CMS.each do |locale| %>
 		<div id="tab_pg_<%= locale.to_s %>">
 			<%= f.inputs do %>
 				<%= f.input "name_#{locale}".to_sym, :label => t("simple_cms.page.name") %>
