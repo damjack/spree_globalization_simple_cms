@@ -1,4 +1,5 @@
 Spree::Blog.class_eval do
+  LANG_CMS = Spree::Config[:locales].split(",").collect {|l| l.to_sym} rescue I18n.available_locales
   translates :name, :slug, :tag_title, :meta_description, :meta_keywords, :description, :content, :fallbacks_for_empty_translations => true
   globalize_accessors :locales => LANG_CMS, :attributes => [:name, :slug, :tag_title, :meta_description, :meta_keywords, :description, :content]
   
