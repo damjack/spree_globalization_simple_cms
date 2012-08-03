@@ -27,7 +27,7 @@ $(document).ready(function() {
 				<%= f.input "tag_title_#{locale}".to_sym, :label => t("simple_cms.page.tag_title") %>
 				<%= f.input "meta_description_#{locale}".to_sym, :label => t("simple_cms.page.meta_description") %>
 				<%= f.input "meta_keywords_#{locale}".to_sym, :label => t("simple_cms.page.meta_keywords") %>
-				<%= f.cktext_area "content_#{locale}".to_sym, :input_html => { :value => Spree::StaticPage.find(@static_page.id).content }, :label => t("simple_cms.page.content") %>
+				<%= f.cktext_area "content_#{locale}".to_sym, :input_html => { :value => (Spree::StaticPage.find(@static_page.id).content if @static_page.id) }, :label => t("simple_cms.page.content") %>
 			<% end %>
 		</div>
 		<% end %>
