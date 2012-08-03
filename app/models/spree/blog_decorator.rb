@@ -3,8 +3,8 @@ Spree::Blog.class_eval do
   translates :name, :slug, :tag_title, :meta_description, :meta_keywords, :description, :content, :fallbacks_for_empty_translations => true
   globalize_accessors :locales => LANG_CMS, :attributes => [:name, :slug, :tag_title, :meta_description, :meta_keywords, :description, :content]
   
-   attr_accessible :translations_attributes
-   accepts_nested_attributes_for :translations
+  attr_accessible :translations_attributes
+  accepts_nested_attributes_for :translations
   
   extend ::FriendlyId
   friendly_id :name, :use => [:slugged, :globalize]
