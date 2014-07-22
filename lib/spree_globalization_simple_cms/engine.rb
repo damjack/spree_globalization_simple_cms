@@ -14,8 +14,9 @@ module SpreeGlobalizationSimpleCms
         Rails.configuration.cache_classes ? require(c) : load(c)
       end
       
-      I18n::Backend::Simple.send(:include, I18n::Backend::Fallbacks)
-      
+      Dir.glob(File.join(File.dirname(__FILE__), "../app/overrides/*.rb")) do |c|
+        Rails.application.config.cache_classes ? require(c) : load(c)
+      end
     end
 
     config.to_prepare &method(:activate).to_proc

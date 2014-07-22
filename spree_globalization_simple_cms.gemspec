@@ -2,7 +2,7 @@
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_globalization_simple_cms'
-  s.version     = '1.0.0'
+  s.version     = '1.3.0'
   s.summary     = 'Spree intergation for translation simple_cms using Globalize3'
   s.required_ruby_version = '>= 1.8.7'
 
@@ -14,13 +14,8 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.requirements << 'none'
 
-  s.add_dependency 'spree_core'
-  s.add_dependency 'spree_auth'
+  s.add_dependency 'spree_core', '>= 1.3.0'
   s.add_dependency 'i18n'
-  s.add_dependency 'globalize3', '~> 0.2.0'
-  s.add_dependency 'formtastic'
-  s.add_dependency 'friendly_id', '~> 4.0.1'
-  s.add_dependency 'easy_globalize3_accessors'
-  
-  s.add_development_dependency 'rspec-rails'
+  s.add_dependency 'globalize3', '~> 3.1.0'
+  s.add_dependency 'routing-filter', '~> 0.3.1'
 end

@@ -1,8 +1,7 @@
 Spree::Page.class_eval do
-  translates :name, :slug, :tag_title, :meta_description, :meta_keywords, :description, :content, :fallbacks_for_empty_translations => true
-  globalize_accessors :locales => LANG_CMS, :attributes => [:name, :slug, :tag_title, :meta_description, :meta_keywords, :description, :content]
+  translates :name, :permalink, :meta_description, :meta_keywords, :body, :link,
+             :fallbacks_for_empty_translations => true
   
-  extend ::FriendlyId
-  friendly_id :name, :use => [:slugged, :globalize]
-  
+  attr_accessible :translations, :translations_attributes
+  accepts_nested_attributes_for :translations
 end
