@@ -16,6 +16,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'spree_core', '>= 1.3.0'
   s.add_dependency 'i18n'
-  s.add_dependency 'globalize3', '~> 3.1.0'
+  s.add_dependency 'globalize', '~> 3.1.0'
   s.add_dependency 'routing-filter', '~> 0.3.1'
 end
